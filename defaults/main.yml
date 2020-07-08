@@ -1,14 +1,21 @@
 # roles/tomcat/defaults/main.yml
 ---
 
-# Port for the Tomcat service
-tomcat_port: 8080
+# Ports for the Tomcat service
+tomcat_port: 9001
+tomcat_shutdown_port: 9005
+tomcat_ajp_port: 9009
+tomcat_redirect_port: 9443
 
 # List of libraries (jar files) to install in Tomcat lib/ directory
-tomcat_libraries: []
+tomcat_libraries: 
+  - /tmp/postgresql-9.2-1003.jdbc3.jar
 
 # List of application WARs to deploy on the Tomcat server
-tomcat_deploy_wars: []
+tomcat_deploy_wars:
+  - /tmp/agentiAsesorWeb.war
+  - /tmp/crc.war
+  - /tmp/probe.war
 
 # Administration webapp
 
@@ -29,3 +36,16 @@ tomcat_roles:
 #     - ROLE1
 #     - ROLE2
 tomcat_users: []
+
+# Tomcat Resources
+tomcat_resources:
+  - name: jdbc/dextraCRCDB
+    description: Acenti CRC
+    password: "{{ lookup('env', 'VM_TOMCAT_RES_AGENTI_PASSWORD_TEST') }}"
+    url: "{{ lookup('env', 'VM_TOMCAT_RES_AGENTI_URL_TEST') }}"
+    username: "{{ lookup('env', 'VM_TOMCAT_RES_AGENTI_USERNAME_TEST') }}"
+  - name: jdbc/SistemagcpDB
+    description: Sistemagcp CRC
+    password: "{{ lookup('env', 'VM_TOMCAT_RES_SGCP_PASSWORD_TEST') }}"
+    url: "{{ lookup('env', 'VM_TOMCAT_RES_SGCP_URL_TEST') }}"
+    username: "{{ lookup('env', 'VM_TOMCAT_RES_SGCP_USERNAME_TEST') }}"

@@ -3,6 +3,12 @@
 
 - name: Install packages
   package:
+    name: java-1.8.0-openjdk
+    state: installed
+  tags: java8
+
+- name: Install packages
+  package:
     name: "{{ item }}"
     state: installed
   with_items: "{{ tomcat_packages }}"

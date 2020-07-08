@@ -1,0 +1,13 @@
+
+- name: create custom tomcat directories
+  file:
+    state: directory
+    path: "{{ item }}"
+    mode: "0755"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_user }}"
+  with_items:
+    - "{{ tomcat_home_dir }}"
+    - "{{ tomcat_lib_dir }}"
+    - "{{ tomcat_app_dir }}"
+    

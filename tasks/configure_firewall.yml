@@ -1,0 +1,13 @@
+# These tasks are responsible for the firewall configuration
+
+- name: enable incoming ports for tomcat service
+  firewalld: 
+    port: "{{ item }}/tcp" 
+    permanent: true 
+    state: enabled 
+    immediate: yes
+  with_items: 
+    - "{{ tomcat_port }}"
+    - "{{ tomcat_shutdown_port }}"
+    - "{{ tomcat_ajp_port }}"
+    - "{{ tomcat_redirect_port }}"

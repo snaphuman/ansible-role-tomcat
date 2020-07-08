@@ -3,10 +3,17 @@
 
 - include_tasks: install.yml
 
+- include_tasks: create_directories.yml
+
+- include_tasks: configure_selinux.yml
+
+- include_tasks: configure_firewall.yml
+
 - name: Install libraries
   copy:
     src: "{{ item }}"
     dest: "{{ tomcat_lib_dir }}"
+    remote_src: yes
   with_items: "{{ tomcat_libraries }}"
   tags: tomcat
 
@@ -34,6 +41,8 @@
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_user }}"
     mode: '0640'
+    remote_src: yes
+  notify: restart tomcat
   with_items: "{{ tomcat_deploy_wars }}"
   tags: tomcat
 
