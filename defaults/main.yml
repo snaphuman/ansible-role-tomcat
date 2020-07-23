@@ -41,11 +41,11 @@ tomcat_users: []
 tomcat_resources:
   - name: jdbc/dextraCRCDB
     description: Acenti CRC
-    password: "{{ lookup('env', 'VM_TOMCAT_RES_AGENTI_PASSWORD_TEST') }}"
-    url: "{{ lookup('env', 'VM_TOMCAT_RES_AGENTI_URL_TEST') }}"
-    username: "{{ lookup('env', 'VM_TOMCAT_RES_AGENTI_USERNAME_TEST') }}"
+    password: "{{ postgres_db_pass }}"
+    url: "{{ lookup('env', 'VM_TOMCAT_RES_AGENTI_URL') }}"
+    username: "{{ postgres_db_user }}"
   - name: jdbc/SistemagcpDB
     description: Sistemagcp CRC
-    password: "{{ lookup('env', 'VM_TOMCAT_RES_SGCP_PASSWORD_TEST') }}"
-    url: "{{ lookup('env', 'VM_TOMCAT_RES_SGCP_URL_TEST') }}"
-    username: "{{ lookup('env', 'VM_TOMCAT_RES_SGCP_USERNAME_TEST') }}"
+    password: "{{ postgres_db_pass }}"
+    url: "{{ lookup('env', 'VM_TOMCAT_RES_SGCP_URL') }}"
+    username: "{{ postgres_db_user }}"
